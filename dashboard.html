@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bushi's Coaching — Dashboard</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./app.js"></script>
+</head>
+<body data-page="dashboard">
+  <header class="topbar">
+    <div class="topbar-inner container">
+      <div class="brand small">
+        <div class="logo"></div>
+        <div>
+          <div class="app-name">Bushi's Coaching</div>
+          <div class="tag">Personalized training</div>
+        </div>
+      </div>
+      <nav class="actions">
+        <button id="logoutBtn" class="btn btn-ghost">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container pad">
+    <h2 class="greeting">Welcome, <span id="displayName">Player</span> 👋</h2>
+
+    <section class="grid two">
+      <div class="card">
+        <h3>Your Coaching Profile</h3>
+        <div id="profile" class="kv-grid"></div>
+      </div>
+      <div class="card">
+        <h3>Rocket League Tracker</h3>
+        <!-- If the site blocks embedding, the iframe will fail; the link fallback still works. -->
+        <div id="trackerEmbed"></div>
+        <p class="muted" id="trackerLinkWrap"></p>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <h3>Upcoming & Past Sessions</h3>
+        <div id="sessions" class="list"></div>
+      </div>
+      <div class="card">
+        <h3>One‑Week Plan</h3>
+        <div id="plan" class="list"></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
