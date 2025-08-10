@@ -126,9 +126,10 @@ const USERS = {
         title: 'Baseline & Mechanics Audit',
         body: [
           'Warmup (15m): freeplay car control — wide turns, powerslides, half‑flips; aim for smooth recoveries after every touch.',
-          'Mechanic sets (25m): 30 speed‑flip reps each side; 20 wavedash recoveries; 20 half‑flip recoveries (record best/avg success).',
-          'Dribble & flicks (15m): 10 controlled carries end‑to‑end; Flick ladder: basic → 45° → 90° (8 reps each).',
-          'Games (30m): 3–5 casual 1s. KPI to track: kickoff win %, boost wasted (est.), shots on target/game.'
+          'Mechanic sets (25m): 100 kickoff practice; 100 wavedash recoveries; 50 half‑flip recoveries.',
+          'Dribble & flicks (35m): 100 controlled carries end‑to‑end; Flick ladder: basic diagonal flick (100).',
+          'Games (30m): 3–5 ranked 1s.'
+          'Games (30m): 3-5 ranked 2s.'
         ]
       },
       {
