@@ -102,16 +102,104 @@ const USERS = {
     username: 'Trent',
     password: 'Trent',
     displayName: 'Trent',
-    trackerUrl: '',
+    trackerUrl: 'https://rocketleague.tracker.network/rocket-league/profile/epic/Flyinplanes/overview',
     profile: {
-      rank: 'Champ 2',
-      focus_areas: ['recovery mechanics', 'air consistency', 'flick consistency'],
+      rank: 'Target: Diamond 3 / Champ 1 (10 weeks)',
+      focus_areas: [
+        'possession & first touch',
+        'solid rotations (2s/1s fundamentals)',
+        'consistency under pressure',
+        'efficient recoveries & boost usage'
+      ],
       availability: 'Evenings CST',
-      notes: 'Circle rule for 2s emphasized.',
-      goal: ''
+      notes: 'Following the Road to GC course (10‑week track).',
+      goal: 'Reach D3–C1 by end of Week 10'
     },
-    sessions: [],
-    plan: []
+    sessions: [
+      // You can add dated coaching sessions here if needed, example:
+      // { coach: 'Coach Bushi', start_utc: '2025-08-12T19:00:00-05:00', duration_min: 60, topic: 'Kickoffs & Possession', summary: 'Speed‑flip consistency + first touch control.' }
+    ],
+    plan: [
+      // === WEEK 1 — Detailed ===
+      {
+        day: 'Week 1 — Day 1',
+        title: 'Baseline & Mechanics Audit',
+        body: [
+          'Warmup (15m): freeplay car control — wide turns, powerslides, half‑flips; aim for smooth recoveries after every touch.',
+          'Mechanic sets (25m): 30 speed‑flip reps each side; 20 wavedash recoveries; 20 half‑flip recoveries (record best/avg success).',
+          'Dribble & flicks (15m): 10 controlled carries end‑to‑end; Flick ladder: basic → 45° → 90° (8 reps each).',
+          'Games (30m): 3–5 casual 1s. KPI to track: kickoff win %, boost wasted (est.), shots on target/game.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 2',
+        title: 'First Touch & Possession',
+        body: [
+          'First touch drill (20m): receive rolling balls, settle to controlled carry within 2 touches; no goal allowed.',
+          'Pressure pops (15m): pop to sidewall → soft catch; aim for ball height ≤ crossbar on catch.',
+          'Decision rule (notes): if contest is 50/50 and you lack boost < 30, shadow instead; prioritize back‑post path.',
+          'Games (30–45m): 1s focus on possession over shots; concede low‑value shots rather than panic flicks.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 3',
+        title: 'Shadow Defense & Backboard',
+        body: [
+          'Shadow lanes (20m): mirror the ball at 45°; never cross front‑post unless clear win.',
+          'Backboard clears (15m): 20 reps each side; cue: arrive early, jump once, nose slightly down on contact.',
+          'Counter‑attack patterns (10m): soft block → immediate boost pad line → turn on ball.',
+          'Games (30m): 1s; KPI: goals conceded from over‑commits ≤ 1/game.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 4',
+        title: 'Aerial Consistency & Landings',
+        body: [
+          'No‑ball aerial routes (10m): corner → mid → opposite corner; focus on smooth air‑roll pathing.',
+          'With‑ball touches (20m): wall takeoffs to soft touches down; target 70% controlled touches.',
+          'Landings (10m): 20 sequences: land, face play, supersonic in 2s; if not, redo.',
+          'Games (30–45m): 2s or 1s with rule: after every aerial, immediate recovery line to nearest pad path.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 5',
+        title: 'Kickoffs & Boost Economy',
+        body: [
+          'Kickoff set (25m): 20 standard, 10 delayed, 10 speed‑flip; record outcomes (possession/win/neutral/loss).',
+          'Boost economy (15m): pad‑path laps (no ball) using small pads only for 5 minutes; then with ball keep ≥ 40 boost average in freeplay.',
+          'Games (30m): 1s focusing on kickoff follow‑ups and holding possession after the win.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 6',
+        title: 'Pressure Simulation & Adaptability',
+        body: [
+          'Custom pressure (20m): fast bounce reads; aim for first‑time controlled touches.',
+          'Scrim set (30m): play a higher‑MMR casual opponent if possible; focus on safe challenges and corner outs.',
+          'Review (10m): write 3 strengths, 3 fixes; pick 1 fix to prioritize tomorrow.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 7',
+        title: 'Assessment & Light Grind',
+        body: [
+          'Assessment set (20m): re‑test speed‑flip, half‑flip success; re‑test flick ladder power/consistency.',
+          'Light games (20–30m): only play while composed; stop at first strong tilt signal.',
+          'VOD notes (10m): clip 3 good possessions & 3 poor ones; summarize fixes for Week 2.'
+        ]
+      },
+
+      // === WEEKS 2–10 — Coming soon ===
+      { day: 'Week 2', title: 'Coming soon', body: [] },
+      { day: 'Week 3', title: 'Coming soon', body: [] },
+      { day: 'Week 4', title: 'Coming soon', body: [] },
+      { day: 'Week 5', title: 'Coming soon', body: [] },
+      { day: 'Week 6', title: 'Coming soon', body: [] },
+      { day: 'Week 7', title: 'Coming soon', body: [] },
+      { day: 'Week 8', title: 'Coming soon', body: [] },
+      { day: 'Week 9', title: 'Coming soon', body: [] },
+      { day: 'Week 10', title: 'Coming soon', body: [] }
+    ]
   }
 };
 
