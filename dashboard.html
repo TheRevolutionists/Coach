@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0d" />
   <title>Bushi's Coaching — Dashboard</title>
   <link rel="stylesheet" href="./styles.css" />
-  <script defer src="./app.js"></script>
 </head>
 <body data-page="dashboard">
   <header class="topbar">
@@ -31,13 +31,12 @@
         <h3>Your Coaching Profile</h3>
         <div id="profile" class="kv-grid"></div>
       </div>
+
       <div class="card">
-  <h3>Rocket League Tracker</h3>
-  <div class="responsive-embed">
-    <iframe src="(left as your user.trackerUrl)" loading="lazy" referrerpolicy="no-referrer"></iframe>
-  </div>
-  <p class="muted" id="trackerLinkWrap"></p>
-</div>
+        <h3>Rocket League Tracker</h3>
+        <div class="responsive-embed" id="trackerEmbed"></div>
+        <p class="muted" id="trackerLinkWrap"></p>
+      </div>
     </section>
 
     <section class="grid two">
@@ -46,10 +45,12 @@
         <div id="sessions" class="list"></div>
       </div>
       <div class="card">
-        <h3>One‑Week Plan</h3>
+        <h3>One-Week / Block Plan</h3>
         <div id="plan" class="list"></div>
       </div>
     </section>
   </main>
+
+  <script src="./app.js?v=4"></script>
 </body>
 </html>
