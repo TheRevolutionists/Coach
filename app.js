@@ -127,11 +127,9 @@ const USERS = {
         day: 'Week 1 — Day 1',
         title: 'Baseline + Form First',
         body: [
-          'Warmup (10m): 60 empty-net ground shots — 20 left, 20 center, 20 right; focus: contact center of ball, follow-through straight.',
-          'Pack (15m): rolling balls at you — 50 reps each side; rule: ball must hit side-net/far-post.',
-          'Corner to far-post (15m): 25 reps each side; approach at 45°, plant before striking.',
-          'Game sim (20m): 2–3 casual 2s; ONLY take grounded shots. KPI: ≥75% shots on target.',
-          'Confidence finisher (5m): 20 slow, perfect placements (no whiffs).'
+          'Warmup (10m): 5A6A-A297-CCB3-1C5D (Training Pack).',
+          'Pack (15m): Striker Training Pack All Star.',
+          'Packs (. . .): Complete the Bronze, Silver, Gold, Plat. Complete 3 times each.',
         ]
       },
       {
