@@ -128,7 +128,7 @@ const USERS = {
         title: 'Baseline + Form First',
         body: [
           'Warmup (10m): 5A6A-A297-CCB3-1C5D (Training Pack).',
-          'Pack (15m): Striker Training Pack All Star.',
+          'Pack (15m): 1FA9-8CAF-8EF2-21B7.',
           'Packs (. . .): Complete the Bronze, Silver, Gold, Plat. Complete 3 times each.',
         ]
       },
@@ -204,10 +204,10 @@ const USERS = {
         day: 'Week 1 — Daily Mental & Confidence',
         title: 'Short, Repeatable Protocol',
         body: [
-          'Breathing: 2 minutes before queues — 4-in/6-out.',
+          'Breathing: 2 minutes before queues — 4 in and out.',
           'Rule of 3: After every game, list 1 strength, 1 fix, 1 specific shot cue.',
           'Tilt breaker: if two rushed whiffs, 5-minute freeplay reset; resume only when calm.',
-          'End on a win drill: 10 simple, perfect placements before closing session.'
+          'End on a win drill: End on a win.'
         ]
       },
 
