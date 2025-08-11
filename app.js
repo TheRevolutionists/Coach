@@ -99,69 +99,129 @@ const USERS = {
     ]
   },
 
-  // Trent
   trent: {
     username: 'Trent',
     password: 'Trent',
     displayName: 'Trent',
     trackerUrl: 'https://rocketleague.tracker.network/rocket-league/profile/epic/Flyinplanes/overview',
     profile: {
-      rank: 'Target: Diamond 3 / Champ 1 (10 weeks)',
+      rank: 'Low Diamond (2s)',
       focus_areas: [
-        'possession & first touch',
-        'solid rotations (2s/1s fundamentals)',
-        'consistency under pressure',
-        'efficient recoveries & boost usage'
+        'shot accuracy (ground / non-aerial)',
+        'air control & aerial shots',
+        'dribbling (incl. jump dribbles)',
+        'two core flicks',
+        'recoveries',
+        'confidence & mental'
       ],
       availability: 'Evenings CST',
-      notes: 'Following the Road to GC course (10-week track).',
-      goal: 'Reach D3–C1 by end of Week 10'
+      notes: 'Road to GC course — 10 weeks; target D3/C1 by end.',
+      goal: 'Reach Diamond 3 / Champ 1 by Week 10'
     },
     sessions: [],
     plan: [
-      { day: 'Week 1 — Day 1', title: 'Baseline & Mechanics Audit', body: [
-        'Warmup (15m): freeplay car control — wide turns, powerslides, half-flips; aim for smooth recoveries after every touch.',
-        'Mechanic sets (25m): 30 speed-flip reps each side; 20 wavedash recoveries; 20 half-flip recoveries (record best/avg success).',
-        'Dribble & flicks (15m): 10 controlled carries end-to-end; Flick ladder: basic → 45° → 90° (8 reps each).',
-        'Games (30m): 3–5 casual 1s. KPI to track: kickoff win %, boost wasted (est.), shots on target/game.'
-      ]},
-      { day: 'Week 1 — Day 2', title: 'First Touch & Possession', body: [
-        'First touch drill (20m): receive rolling balls, settle to controlled carry within 2 touches; no goal allowed.',
-        'Pressure pops (15m): pop to sidewall → soft catch; aim for ball height ≤ crossbar on catch.',
-        'Decision rule: if contest is 50/50 and you have <30 boost, shadow instead; prioritize back-post path.',
-        'Games (30–45m): 1s focus on possession over shots; concede low-value shots rather than panic flicks.'
-      ]},
-      { day: 'Week 1 — Day 3', title: 'Shadow Defense & Backboard', body: [
-        'Shadow lanes (20m): mirror the ball at ~45°; never cross front-post unless clear win.',
-        'Backboard clears (15m): 20 reps each side; cue: arrive early, jump once, nose slightly down on contact.',
-        'Counter-attack patterns (10m): soft block → immediate boost pad line → turn on ball.',
-        'Games (30m): 1s; KPI: goals conceded from over-commits ≤ 1/game.'
-      ]},
-      { day: 'Week 1 — Day 4', title: 'Aerial Consistency & Landings', body: [
-        'No-ball aerial routes (10m): corner → mid → opposite corner; focus on smooth air-roll pathing.',
-        'With-ball touches (20m): wall takeoffs to soft touches down; target 70% controlled touches.',
-        'Landings (10m): 20 sequences: land, face play, supersonic in 2s; if not, redo.',
-        'Games (30–45m): 2s or 1s with rule: after every aerial, immediate recovery line to nearest pad path.'
-      ]},
-      { day: 'Week 1 — Day 5', title: 'Kickoffs & Boost Economy', body: [
-        'Kickoff set (25m): 20 standard, 10 delayed, 10 speed-flip; record outcomes (possession/win/neutral/loss).',
-        'Boost economy (15m): pad-path laps (no ball) using small pads only for 5 minutes; then with ball keep ≥ 40 boost average in freeplay.',
-        'Games (30m): 1s focusing on kickoff follow-ups and holding possession after the win.'
-      ]},
-      { day: 'Week 1 — Day 6', title: 'Pressure Simulation & Adaptability', body: [
-        'Custom pressure (20m): fast bounce reads; aim for first-time controlled touches.',
-        'Scrim set (30m): play a higher-MMR casual opponent if possible; focus on safe challenges and corner outs.',
-        'Review (10m): write 3 strengths, 3 fixes; pick 1 fix to prioritize tomorrow.'
-      ]},
-      { day: 'Week 1 — Day 7', title: 'Assessment & Light Grind', body: [
-        'Assessment set (20m): re-test speed-flip, half-flip success; re-test flick ladder power/consistency.',
-        'Light games (20–30m): only play while composed; stop at first strong tilt signal.',
-        'VOD notes (10m): clip 3 good possessions & 3 poor ones; summarize fixes for Week 2.'
-      ]},
-      { day: 'Week 2', title: 'Coming soon', body: [] },
-      { day: 'Week 3', title: 'Coming soon', body: [] },
-      { day: 'Week 4', title: 'Coming soon', body: [] },
-      { day: 'Week 5', title: 'Coming soon', body: [] },
+      // ===========================
+      // WEEK 1 — SHOT ACCURACY (GROUND/NON-AERIAL)
+      // ===========================
+      {
+        day: 'Week 1 — Day 1',
+        title: 'Baseline + Form First',
+        body: [
+          'Warmup (10m): 60 empty-net ground shots — 20 left, 20 center, 20 right; focus: contact center of ball, follow-through straight.',
+          'Pack (15m): rolling balls at you — 50 reps each side; rule: ball must hit side-net/far-post.',
+          'Corner to far-post (15m): 25 reps each side; approach at 45°, plant before striking.',
+          'Game sim (20m): 2–3 casual 2s; ONLY take grounded shots. KPI: ≥75% shots on target.',
+          'Confidence finisher (5m): 20 slow, perfect placements (no whiffs).'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 2',
+        title: 'Placement Over Power',
+        body: [
+          'Spot targets: place cones (imaginary) top corners & posts; 40 shots hitting those spots.',
+          'Bounces (15m): 40 bounce shots — contact early rise; aim low-far post.',
+          'Receive & shoot (15m): trap → one-touch shot, 30 reps; focus: first touch sets angle.',
+          '2s (30m): shoot only when 80%+; pass if not. KPI: wasted shots ≤1/game.',
+          'Mental (5m): write 3 “shot rules” you followed today.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 3',
+        title: 'Power Shot Mechanics (Still Grounded)',
+        body: [
+          'Run-up timing: 30 power shots from midfield; cue: last step before contact.',
+          'Cross-body strikes: 20 each side (right-to-left, left-to-right).',
+          'Pressure drill (10m): partner/bot shadows; you must pick corner fast.',
+          '2s (30m): try “win ball → settle → strike” pattern; KPI: >2 quality shots/game.',
+          'Confidence (5m): 15 easy finishes to center the feel.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 4',
+        title: 'First-Touch to Shot',
+        body: [
+          'Feeds (20m): soft pass to self → first-touch into lane → shot (30 reps).',
+          'Half-volley (15m): let ball bounce once, strike early rise — 30 reps.',
+          'Corner cuts (10m): carry from corner, cut inside to far-post finish — 15 each side.',
+          '2s (30m): look for first-touch lanes, avoid panic shots.',
+          'Mental (5m): 3 clips of good prep touches (save for review).'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 5',
+        title: 'Under Pressure Accuracy',
+        body: [
+          'Shot clock: 1.5s timer from first touch to strike — 40 reps mixed spots.',
+          'Small-goal constraint: shrink target (imagine inner box); 30 reps must hit inside.',
+          'Recovery into shot: turn, grab pads, quick set → shot (20 reps).',
+          '2s (30m): “accuracy > power” rule; KPI: ≥70% on target.',
+          'Reset (5m): 10 simple side-net finishes.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 6',
+        title: 'Consistency Day (Re-test)',
+        body: [
+          'Re-run Day 1 pack: must beat your best on-target %.',
+          'Corners: 20 each side with a defender bot; pick corner away from them.',
+          'Edge cases: weak-foot sides and tight angles — 20 reps.',
+          '2s (30m): focus on choosing the BEST shot, even if fewer attempts.',
+          'Mental (5m): note 3 “bad shot triggers” to avoid tomorrow.'
+        ]
+      },
+      {
+        day: 'Week 1 — Day 7',
+        title: 'Assessment & Transfer',
+        body: [
+          'Assessment pack (20m): 60 mixed ground shots; record on-target %, post placement map.',
+          'Live pressure (15m): mirror defense → quick strike decisions.',
+          '2s (30m): hunt quality — passes > bad shots.',
+          'VOD (10m): mark 3 great shots and 3 passes where you skipped a bad shot.',
+          'Set Week 2 intention: air control will build on this accuracy.'
+        ]
+      },
+
+      // DAILY CONFIDENCE / MENTAL (applies every day in Week 1)
+      {
+        day: 'Week 1 — Daily Mental & Confidence',
+        title: 'Short, Repeatable Protocol',
+        body: [
+          'Breathing: 2 minutes before queues — 4-in/6-out.',
+          'Rule of 3: After every game, list 1 strength, 1 fix, 1 specific shot cue.',
+          'Tilt breaker: if two rushed whiffs, 5-minute freeplay reset; resume only when calm.',
+          'End on a win drill: 10 simple, perfect placements before closing session.'
+        ]
+      },
+
+      // ===========================
+      // WEEK 2–5 — TOPICS (coming soon)
+      // ===========================
+      { day: 'Week 2 — Focus', title: 'Air Control, Aerials & Aerial Shots', body: ['Coming soon.'] },
+      { day: 'Week 3 — Focus', title: 'Dribbling (incl. Jump Dribbles)', body: ['Coming soon.'] },
+      { day: 'Week 4 — Focus', title: 'Flicks (Master 2 Types Only)', body: ['Coming soon.'] },
+      { day: 'Week 5 — Focus', title: 'Recoveries (Speed, Landings, Pad Paths)', body: ['Coming soon.'] },
+
+      // Weeks 6–10 placeholders (keep structure)
       { day: 'Week 6', title: 'Coming soon', body: [] },
       { day: 'Week 7', title: 'Coming soon', body: [] },
       { day: 'Week 8', title: 'Coming soon', body: [] },
