@@ -136,11 +136,9 @@ const USERS = {
         day: 'Week 1 — Day 2',
         title: 'Placement Over Power',
         body: [
-          'Spot targets: place cones (imaginary) top corners & posts; 40 shots hitting those spots.',
-          'Bounces (15m): 40 bounce shots — contact early rise; aim low-far post.',
-          'Receive & shoot (15m): trap → one-touch shot, 30 reps; focus: first touch sets angle.',
-          '2s (30m): shoot only when 80%+; pass if not. KPI: wasted shots ≤1/game.',
-          'Mental (5m): write 3 “shot rules” you followed today.'
+          'Pack (Complete 10 times): 4912-A5C9-9A56-555D',
+          'Packs (Complete each 2 times): Complete Bronze - Diamond',
+          '1v1 Games: 3-5 Games',
         ]
       },
       {
