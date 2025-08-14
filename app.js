@@ -145,11 +145,7 @@ const USERS = {
         day: 'Week 1 — Day 3',
         title: 'Power Shot Mechanics (Still Grounded)',
         body: [
-          'Run-up timing: 30 power shots from midfield; cue: last step before contact.',
-          'Cross-body strikes: 20 each side (right-to-left, left-to-right).',
-          'Pressure drill (10m): partner/bot shadows; you must pick corner fast.',
-          '2s (30m): try “win ball → settle → strike” pattern; KPI: >2 quality shots/game.',
-          'Confidence (5m): 15 easy finishes to center the feel.'
+          'Day 1 + Day 2 Work'
         ]
       },
       {
