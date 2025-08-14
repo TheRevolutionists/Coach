@@ -307,15 +307,20 @@ function onDashboardPage() {
   // Greeting
   document.getElementById('displayName').textContent = user.displayName;
 
-  // Profile
   const p = user.profile || {};
-  document.getElementById('profile').innerHTML = [
-    row('Rank', p.rank || '—'),
-    row('Focus Areas', (p.focus_areas || []).join(', ')),
-    row('Availability', p.availability || '—'),
-    row('Goal', p.goal || '—'),
-    row('Notes', p.notes || '—')
-  ].join('');
+const stallHtml = (p.stall_reasons && p.stall_reasons.length)
+  ? `<ul>${p.stall_reasons.map(x => `<li>${x}</li>`).join('')}</ul>`
+  : '—';
+
+document.getElementById('profile').innerHTML = [
+  row('Rank', p.rank || '—'),
+  row('Focus Areas', (p.focus_areas || []).join(', ')),
+  row('Availability', p.availability || '—'),
+  row('Goal', p.goal || '—'),
+  row('Notes', p.notes || '—'),
+  row('Why C2/C3 → GC1 stalls', stallHtml)
+].join('');
+
 
   // Tracker (responsive wrapper already in HTML/CSS)
   const trackerEmbed = document.getElementById('trackerEmbed');
