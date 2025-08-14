@@ -43,62 +43,110 @@ const USERS = {
     ]
   },
 
-  // Kuwait
   kuwait: {
     username: 'Kuwait',
     password: 'Kuwait',
     displayName: 'Kuwait',
     trackerUrl: 'https://rocketleague.tracker.network/rocket-league/profile/epic/komekuwait.ttv/overview',
     profile: {
-      rank: 'Champ 2 - Champ 3',
-      focus_areas: ['recovery mechanics', 'air consistency', 'flick consistency'],
+      rank: 'Champ 2 – Champ 3',
+      focus_areas: ['consistency at speed', 'smart challenges (no overcommit)', 'recoveries & boost economy', 'backboard defense', 'two-touch offense'],
       availability: 'N/A',
-      notes: 'Circle rule for 2s emphasized.',
-      goal: 'GC 1'
+      notes: 'One-week GC1 push focused on low-risk, high-consistency play using the circle rule.',
+      goal: 'GC 1',
+      stall_reasons: [
+        'Overcommitting on offense (risky 50s with no support)',
+        'Inconsistent recoveries (out of the play after misses)',
+        'Poor boost management (<30 boost commits, no pad path)',
+        'Ignoring teammate position (1v2 plays, cutting rotation)',
+        'No shot variety (predictable power shots, no delays/fakes)'
+      ]
     },
     sessions: [
-      { coach: 'Coach Bushi', start_utc: '2025-08-03T13:00:00-05:00', duration_min: 60, topic: 'Coaching Session', summary: 'Focused on recoveries and aerial control.' },
-      { coach: 'Coach Bushi', start_utc: '2025-08-06T13:00:00-05:00', duration_min: 60, topic: 'Coaching Session', summary: 'Rechecked recoveries, introduced flick ladder.' }
+      { coach: 'Coach Bushi', start_utc: '2025-08-03T13:00:00-05:00', duration_min: 60, topic: 'Coaching Session', summary: 'Recoveries & aerial control.' },
+      { coach: 'Coach Bushi', start_utc: '2025-08-06T13:00:00-05:00', duration_min: 60, topic: 'Coaching Session', summary: 'Circle rule & decision timing.' }
     ],
     plan: [
-      { day: 'Day 1', title: 'Recovery Reset', body: [
-        '15 min: No boost recoveries (landings to supersonic in 2s, camera discipline).',
-        '15 min: Wall falls → fast recoveries (single/jump resets).',
-        'Custom: 30 ranked 1s touches focused on instant recovery after every hit.'
-      ]},
-      { day: 'Day 2', title: 'First Touch → Air Control', body: [
-        '20 min: First-touch catches into controlled pop (no goal allowed).',
-        '20 min: Air roll pathing (S-curves, throttle feather).',
-        'Scrim: 2× Bo3 1s sets; VOD note each lost possession.'
-      ]},
-      { day: 'Day 3', title: 'Flick Ladder', body: [
-        'Warmup: 30 ground dribbles (no boost).',
-        'Ladder: basic → 45° → 90° → musty (10 reps each; record best power).',
-        '10 comp 2s plays applying circle rule; log 3 good/3 bad plays.'
-      ]},
-      { day: 'Day 4', title: 'Speed + Control', body: [
-        'Speed flips (left/right) 30 reps; cue: car straight before contact.',
-        'Aerial routes box → corner → mid (no ball) 15 min, then with ball 15 min.',
-        'Replay review: 15 min focus on avoidable stalls (bad landings).'
-      ]},
-      { day: 'Day 5', title: 'Pressure Simulation', body: [
-        'Heatseeker or rings to elevate reaction; 20 min.',
-        'Custom training: short bounce reads, 20 min.',
-        '2s queues: only fast rotations; if tilt, 5-min freeplay reset.'
-      ]},
-      { day: 'Day 6', title: 'Consistency Day', body: [
-        'Pick 3 drills you missed—repeat until 80% success.',
-        '20 min flick accuracy with power tracking.',
-        '1s: 5 games max; focus on kickoff plans and possession from corner.'
-      ]},
-      { day: 'Day 7', title: 'Assessment', body: [
-        'Record a 10-min playlist of plays. Note 5 recovery wins and 5 losses.',
-        'Re-test flick ladder (document best/avg power).',
-        'Set next-week targets toward GC 1.'
-      ]}
+      {
+        day: 'Day 1',
+        title: 'Foundation & Speed Control',
+        body: [
+          'Custom Pack: medium-pace ground/corner shots — 100% accuracy goal before speeding up.',
+          'Freeplay: circle-rule pathing at ~80% pace; never boost-drain fully; practice pad-to-pad routes.',
+          'Replay review (30m): find 5 overcommits or speed chases; write the safer alternative.',
+          'Ranked 2s (5 games): only safe challenges, second-man ready; KPI: <1 double-commit.'
+        ]
+      },
+      {
+        day: 'Day 2',
+        title: 'Consistency in Challenges',
+        body: [
+          'Shadow defense (20m): stay one car behind the ball at 45°; force bad shots.',
+          'Saves pack (15m): ground & mid-height blocks; hands neutral, no panic jumps.',
+          'Challenge rulesheet: hard commit only on clear win; otherwise delay/fake.',
+          'Ranked 2s (6 games): record; KPI: forced bad shots ≥3/game.'
+        ]
+      },
+      {
+        day: 'Day 3',
+        title: 'Controlled Speed & Recovery',
+        body: [
+          'Figure-8 pad route (15m): supersonic with clean turns; no wall crashes.',
+          'Recovery reps (15m): flip-cancel → wavedash after every touch; immediate face-play.',
+          'Decision cue: awkward touch → abort to back-post instead of forcing speed.',
+          'Ranked 2s (5 games): KPI: average boost >40 during defense.'
+        ]
+      },
+      {
+        day: 'Day 4',
+        title: 'Two-Touch Offense & First Touch',
+        body: [
+          'First-touch into lane (20m): feed to self → settle → placed shot; 30 reps.',
+          'Half-volleys (15m): strike early rise; low far-post placement; 30 reps.',
+          'Corner carry → cut-inside (10m): 15 reps each side; keep ball tight.',
+          'Ranked 2s (5 games): prioritize two-touch plays over 1-touch clears.'
+        ]
+      },
+      {
+        day: 'Day 5',
+        title: 'Defensive Solidity & Backboard',
+        body: [
+          'Backboard clears: 20 clean clears per side (arrive early, one jump, nose slightly down).',
+          'Shadow → challenge timing: engage as ball starts to drop; 20 reps.',
+          'Ranked 2s (5 games): KPI: 0 own-goals, missed open nets ≤1.'
+        ]
+      },
+      {
+        day: 'Day 6',
+        title: 'Match Simulation Day',
+        body: [
+          'Tournament set: 8 ranked 2s back-to-back; between games write 1 fix → apply next.',
+          'Fuel rule: keep ≥40 boost before any hard challenge; otherwise pad path first.',
+          'KPI: goals conceded from overcommit ≤1/game.'
+        ]
+      },
+      {
+        day: 'Day 7',
+        title: 'GC Push & Reinforcement',
+        body: [
+          'Warm-up: 15m freeplay + 15m mixed pack.',
+          'Queue only while composed; instant 5-min reset on tilt.',
+          'Replay wins: clip 3 good rotations & 3 smart non-challenges; lock the habits.'
+        ]
+      },
+      {
+        day: 'Daily Mental & Confidence',
+        title: 'Short Protocol (Use Every Day)',
+        body: [
+          'Breath 2m before queues: 4-in / 6-out.',
+          'Rule of 3: after each game note 1 strength, 1 fix, 1 cue for next game.',
+          'Tilt breaker: two rushed whiffs → 5-min freeplay reset.',
+          'End on a win drill: 10 simple perfect placements before closing.'
+        ]
+      }
     ]
   },
-
+   
   trent: {
     username: 'Trent',
     password: 'Trent',
