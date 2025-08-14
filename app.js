@@ -1,12 +1,17 @@
-/* Client script for login + dashboard (Bushi, Kuwait, Trent).
-   - Uses localStorage for a simple “auth” key
-   - Renders per-user profile, tracker, sessions, and plan
+/* Bushi's Coaching — app.js
+   - Login (Bushi/BushiRL, Kuwait/Kuwait, Trent/Trent)
+   - Dashboard renderer per user
+   - Tracker embed + Sessions + Plan
+   - Persistent checklist checkboxes (per user, per bullet)
 */
 
 function offsetDaysISO(days) { return new Date(Date.now() + days * 86400000).toISOString(); }
 
+/* =========================
+   User Database (demo)
+   ========================= */
 const USERS = {
-  // Bushi
+  // --- Bushi ---
   bushi: {
     username: 'Bushi',
     password: 'BushiRL',
@@ -43,6 +48,7 @@ const USERS = {
     ]
   },
 
+  // --- Kuwait ---
   kuwait: {
     username: 'Kuwait',
     password: 'Kuwait',
@@ -71,7 +77,7 @@ const USERS = {
         day: 'Day 1',
         title: 'Foundation & Speed Control',
         body: [
-          'Custom Pack: medium-pace ground/corner shots — 100% accuracy goal before speeding up.',
+          'Custom pack: medium-pace ground/corner shots — 100% accuracy goal before speeding up.',
           'Freeplay: circle-rule pathing at ~80% pace; never boost-drain fully; practice pad-to-pad routes.',
           'Replay review (30m): find 5 overcommits or speed chases; write the safer alternative.',
           'Ranked 2s (5 games): only safe challenges, second-man ready; KPI: <1 double-commit.'
@@ -146,7 +152,8 @@ const USERS = {
       }
     ]
   },
-   
+
+  // --- Trent ---
   trent: {
     username: 'Trent',
     password: 'Trent',
@@ -168,53 +175,59 @@ const USERS = {
     },
     sessions: [],
     plan: [
-      // ===========================
-      // WEEK 1 — SHOT ACCURACY (GROUND/NON-AERIAL)
-      // ===========================
+      // Week 1 — Shot Accuracy (ground/non-aerial) — detailed & repetitive
       {
         day: 'Week 1 — Day 1',
         title: 'Baseline + Form First',
         body: [
-          'Warmup (10m): 5A6A-A297-CCB3-1C5D (Training Pack).',
-          'Pack (15m): 1FA9-8CAF-8EF2-21B7.',
-          'Packs (. . .): Complete the Bronze, Silver, Gold, Plat. Complete 3 times each.',
+          'Warmup (10m): 60 empty-net ground shots — 20 left, 20 center, 20 right; center-ball contact & straight follow-through.',
+          'Pack (15m): rolling balls at you — 50 reps each side; requirement: side-net/far-post only.',
+          'Corner to far-post (15m): 25 reps each side; approach at ~45°, plant before strike.',
+          'Game sim (20m): 2–3 casual 1s; KPI: ≥75% shots on target.',
+          'Confidence (5m): 20 slow, perfect placements.'
         ]
       },
       {
         day: 'Week 1 — Day 2',
         title: 'Placement Over Power',
         body: [
-          'Pack (Complete 10 times): 4912-A5C9-9A56-555D',
-          'Packs (Complete each 2 times): Complete Bronze - Diamond',
-          '1v1 Games: 3-5 Games',
+          'Spot targets: imaginary cones corners/posts; 40 shots to those spots.',
+          'Bounces (15m): 40 bounce shots — contact early rise; aim low far-post.',
+          'Receive & shoot (15m): trap → one-touch shot, 30 reps; first touch must set angle.',
+          '1s (30–45m): skip low-value shots; KPI: wasted shots ≤1/game.',
+          'Mental (5m): write 3 “shot rules” used today.'
         ]
       },
       {
         day: 'Week 1 — Day 3',
-        title: 'Power Shot Mechanics (Still Grounded)',
+        title: 'Power Shot Mechanics (Grounded)',
         body: [
-          'Day 1 + Day 2 Work'
+          'Run-up timing: 30 power shots from midfield; last step timing cue.',
+          'Cross-body strikes: 20 each side (R→L, L→R).',
+          'Pressure drill (10m): partner/bot shadows; fast pick a corner.',
+          '1s (30m): win ball → settle → strike; KPI: >2 quality shots/game.',
+          'Confidence (5m): 15 easy center finishes.'
         ]
       },
       {
         day: 'Week 1 — Day 4',
         title: 'First-Touch to Shot',
         body: [
-          'Feeds (20m): soft pass to self → first-touch into lane → shot (30 reps).',
-          'Half-volley (15m): let ball bounce once, strike early rise — 30 reps.',
-          'Corner cuts (10m): carry from corner, cut inside to far-post finish — 15 each side.',
-          '2s (30m): look for first-touch lanes, avoid panic shots.',
-          'Mental (5m): 3 clips of good prep touches (save for review).'
+          'Feeds (20m): soft pass to self → first touch into lane → shot (30 reps).',
+          'Half-volleys (15m): bounce once, strike early rise — 30 reps.',
+          'Corner cuts (10m): carry from corner, cut inside to far-post — 15 each side.',
+          '1s/2s (30m): two-touch lanes, avoid panic shots.',
+          'Mental (5m): clip 3 prep-touch examples.'
         ]
       },
       {
         day: 'Week 1 — Day 5',
         title: 'Under Pressure Accuracy',
         body: [
-          'Shot clock: 1.5s timer from first touch to strike — 40 reps mixed spots.',
-          'Small-goal constraint: shrink target (imagine inner box); 30 reps must hit inside.',
-          'Recovery into shot: turn, grab pads, quick set → shot (20 reps).',
-          '2s (30m): “accuracy > power” rule; KPI: ≥70% on target.',
+          'Shot clock: 1.5s from first touch to strike — 40 mixed reps.',
+          'Small-goal constraint: aim for inner box; 30 reps must land inside.',
+          'Recovery → shot: turn, pad route, quick set → shot (20 reps).',
+          '1s (30m): accuracy > power; KPI: ≥70% on target.',
           'Reset (5m): 10 simple side-net finishes.'
         ]
       },
@@ -222,46 +235,32 @@ const USERS = {
         day: 'Week 1 — Day 6',
         title: 'Consistency Day (Re-test)',
         body: [
-          'Re-run Day 1 pack: must beat your best on-target %.',
-          'Corners: 20 each side with a defender bot; pick corner away from them.',
-          'Edge cases: weak-foot sides and tight angles — 20 reps.',
-          '2s (30m): focus on choosing the BEST shot, even if fewer attempts.',
-          'Mental (5m): note 3 “bad shot triggers” to avoid tomorrow.'
+          'Re-run Day 1 pack: beat prior on-target %.',
+          'Corners: 20 each side vs defender bot; shoot away from defender.',
+          'Edge angles: weak-foot sides/tight angles — 20 reps.',
+          '1s (30m): choose BEST shot, fewer attempts OK.',
+          'Mental (5m): list 3 “bad shot triggers” to avoid.'
         ]
       },
       {
         day: 'Week 1 — Day 7',
         title: 'Assessment & Transfer',
         body: [
-          'Assessment pack (20m): 60 mixed ground shots; record on-target %, post placement map.',
+          'Assessment pack (20m): 60 mixed ground shots; record on-target % & map.',
           'Live pressure (15m): mirror defense → quick strike decisions.',
-          '2s (30m): hunt quality — passes > bad shots.',
-          'VOD (10m): mark 3 great shots and 3 passes where you skipped a bad shot.',
-          'Set Week 2 intention: air control will build on this accuracy.'
+          '1s (20–30m): stop at tilt; play composed only.',
+          'VOD (10m): 3 great shots & 3 passes where you skipped a bad shot.',
+          'Set Week 2 intention: air control builds on this.'
         ]
       },
 
-      // DAILY CONFIDENCE / MENTAL (applies every day in Week 1)
-      {
-        day: 'Week 1 — Daily Mental & Confidence',
-        title: 'Short, Repeatable Protocol',
-        body: [
-          'Breathing: 2 minutes before queues — 4 in and out.',
-          'Rule of 3: After every game, list 1 strength, 1 fix, 1 specific shot cue.',
-          'Tilt breaker: if two rushed whiffs, 5-minute freeplay reset; resume only when calm.',
-          'End on a win drill: End on a win.'
-        ]
-      },
-
-      // ===========================
-      // WEEK 2–5 — TOPICS (coming soon)
-      // ===========================
+      // Weeks 2–5 topics (coming soon per your request)
       { day: 'Week 2 — Focus', title: 'Air Control, Aerials & Aerial Shots', body: ['Coming soon.'] },
       { day: 'Week 3 — Focus', title: 'Dribbling (incl. Jump Dribbles)', body: ['Coming soon.'] },
       { day: 'Week 4 — Focus', title: 'Flicks (Master 2 Types Only)', body: ['Coming soon.'] },
       { day: 'Week 5 — Focus', title: 'Recoveries (Speed, Landings, Pad Paths)', body: ['Coming soon.'] },
 
-      // Weeks 6–10 placeholders (keep structure)
+      // Weeks 6–10 placeholders
       { day: 'Week 6', title: 'Coming soon', body: [] },
       { day: 'Week 7', title: 'Coming soon', body: [] },
       { day: 'Week 8', title: 'Coming soon', body: [] },
@@ -271,26 +270,47 @@ const USERS = {
   }
 };
 
+/* =========================
+   Auth helpers
+   ========================= */
 const AUTH_KEY = 'rl_auth_user';
 function setAuth(name) { localStorage.setItem(AUTH_KEY, name); }
 function getAuth() { return localStorage.getItem(AUTH_KEY); }
 function clearAuth() { localStorage.removeItem(AUTH_KEY); }
 
+/* =========================
+   Checklist persistence
+   ========================= */
+function checksKey(username) { return `rl_plan_checks_${username}`; }
+function getChecks(username) {
+  try { return JSON.parse(localStorage.getItem(checksKey(username)) || '{}'); }
+  catch { return {}; }
+}
+function setChecks(username, obj) {
+  localStorage.setItem(checksKey(username), JSON.stringify(obj));
+}
+function bulletId(day, title, index) {
+  return `${day}:::${title}:::${index}`;
+}
+
+/* =========================
+   Page Controllers
+   ========================= */
 function onLoginPage() {
   const form = document.getElementById('loginForm');
   const errorEl = document.getElementById('error');
 
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
-    errorEl.classList.add('hidden');
+    errorEl?.classList.add('hidden');
 
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
     const key = (username || '').toLowerCase();
 
     const user = USERS[key];
-    if (!user) { errorEl.textContent = 'User not found'; errorEl.classList.remove('hidden'); return; }
-    if (password !== user.password) { errorEl.textContent = 'Wrong password'; errorEl.classList.remove('hidden'); return; }
+    if (!user) { if (errorEl) { errorEl.textContent = 'User not found'; errorEl.classList.remove('hidden'); } return; }
+    if (password !== user.password) { if (errorEl) { errorEl.textContent = 'Wrong password'; errorEl.classList.remove('hidden'); } return; }
 
     setAuth(key);
     window.location.href = 'dashboard.html';
@@ -305,59 +325,131 @@ function onDashboardPage() {
   const user = USERS[key];
 
   // Greeting
-  document.getElementById('displayName').textContent = user.displayName;
+  const nameEl = document.getElementById('displayName');
+  if (nameEl) nameEl.textContent = user.displayName;
 
+  // Profile
   const p = user.profile || {};
-const stallHtml = (p.stall_reasons && p.stall_reasons.length)
-  ? `<ul>${p.stall_reasons.map(x => `<li>${x}</li>`).join('')}</ul>`
-  : '—';
+  const stallHtml = (p.stall_reasons && p.stall_reasons.length)
+    ? `<ul>${p.stall_reasons.map(x => `<li>${x}</li>`).join('')}</ul>`
+    : '—';
+  const profileEl = document.getElementById('profile');
+  if (profileEl) {
+    profileEl.innerHTML = [
+      row('Rank', p.rank || '—'),
+      row('Focus Areas', (p.focus_areas || []).join(', ')),
+      row('Availability', p.availability || '—'),
+      row('Goal', p.goal || '—'),
+      row('Notes', p.notes || '—'),
+      row('Why C2/C3 → GC1 stalls', stallHtml)
+    ].join('');
+  }
 
-document.getElementById('profile').innerHTML = [
-  row('Rank', p.rank || '—'),
-  row('Focus Areas', (p.focus_areas || []).join(', ')),
-  row('Availability', p.availability || '—'),
-  row('Goal', p.goal || '—'),
-  row('Notes', p.notes || '—'),
-  row('Why C2/C3 → GC1 stalls', stallHtml)
-].join('');
-
-
-  // Tracker (responsive wrapper already in HTML/CSS)
+  // Tracker
   const trackerEmbed = document.getElementById('trackerEmbed');
   const trackerLinkWrap = document.getElementById('trackerLinkWrap');
-  if (user.trackerUrl) {
-    trackerEmbed.innerHTML = `<iframe src="${user.trackerUrl}" loading="lazy" referrerpolicy="no-referrer"></iframe>`;
-    trackerLinkWrap.innerHTML = `If the embed is blocked, open here: <a href="${user.trackerUrl}" target="_blank">${user.trackerUrl}</a>`;
-  } else {
-    trackerEmbed.innerHTML = '<p class="muted">No tracker linked yet.</p>';
-    trackerLinkWrap.textContent = '';
+  if (trackerEmbed) {
+    if (user.trackerUrl) {
+      trackerEmbed.innerHTML = `<iframe src="${user.trackerUrl}" loading="lazy" referrerpolicy="no-referrer"></iframe>`;
+      if (trackerLinkWrap) {
+        trackerLinkWrap.innerHTML = `If the embed is blocked, open here: <a href="${user.trackerUrl}" target="_blank">${user.trackerUrl}</a>`;
+      }
+    } else {
+      trackerEmbed.innerHTML = '<p class="muted">No tracker linked yet.</p>';
+      if (trackerLinkWrap) trackerLinkWrap.textContent = '';
+    }
   }
 
   // Sessions
   const sessionsEl = document.getElementById('sessions');
   const sessions = user.sessions || [];
-  sessionsEl.innerHTML = sessions.length ? sessions.map(s => itemTemplate({
-    title: s.topic || 'Session',
-    meta: `Coach: ${s.coach} • ${new Date(s.start_utc).toLocaleString()} • ${s.duration_min || 0} min`,
-    body: s.summary || ''
-  })).join('') : '<p class="muted">No sessions yet.</p>';
+  if (sessionsEl) {
+    sessionsEl.innerHTML = sessions.length ? sessions.map(s => itemTemplate({
+      title: s.topic || 'Session',
+      meta: `Coach: ${s.coach} • ${new Date(s.start_utc).toLocaleString()} • ${s.duration_min || 0} min`,
+      body: s.summary || ''
+    })).join('') : '<p class="muted">No sessions yet.</p>';
+  }
 
-  // Plan
+  // Plan (with persistent checkboxes + per-card progress)
   const planEl = document.getElementById('plan');
   const plan = user.plan || [];
-  planEl.innerHTML = plan.length ? plan.map(d => planItem(d)).join('') : '<p class="muted">Plan not set yet.</p>';
+  const checks = getChecks(key);
+
+  if (planEl) {
+    if (!plan.length) {
+      planEl.innerHTML = '<p class="muted">Plan not set yet.</p>';
+    } else {
+      planEl.innerHTML = plan.map((d, di) => planItem(d, di, checks, key)).join('');
+
+      // Initialize progress displays
+      planEl.querySelectorAll('[data-plan-index]').forEach(card => {
+        const di = Number(card.getAttribute('data-plan-index'));
+        const bullets = plan[di]?.body || [];
+        const done = bullets.filter((_, bi) => checks[bulletId(plan[di].day, plan[di].title, bi)]).length;
+        const prog = card.querySelector('.progress');
+        if (prog) prog.textContent = `${done}/${bullets.length} completed`;
+      });
+
+      // Handle checkbox changes
+      planEl.addEventListener('change', (e) => {
+        if (!e.target.matches?.('input[type="checkbox"][data-bid]')) return;
+        const id = e.target.getAttribute('data-bid');
+        checks[id] = e.target.checked;
+        setChecks(key, checks);
+
+        const li = e.target.closest('li');
+        if (li) li.classList.toggle('done', e.target.checked);
+
+        const card = e.target.closest('[data-plan-index]');
+        if (card) {
+          const di = Number(card.getAttribute('data-plan-index'));
+          const bullets = plan[di]?.body || [];
+          const done = bullets.filter((_, bi) => checks[bulletId(plan[di].day, plan[di].title, bi)]).length;
+          const prog = card.querySelector('.progress');
+          if (prog) prog.textContent = `${done}/${bullets.length} completed`;
+        }
+      });
+    }
+  }
 
   // Logout
-  document.getElementById('logoutBtn')?.addEventListener('click', () => { clearAuth(); window.location.href = 'index.html'; });
+  document.getElementById('logoutBtn')?.addEventListener('click', () => {
+    clearAuth();
+    window.location.href = 'index.html';
+  });
 }
 
+/* =========================
+   Small render helpers
+   ========================= */
 function row(key, val) { return `<div class="key">${key}</div><div>${val ?? '—'}</div>`; }
-function itemTemplate({ title, meta, body }) { return `<div class="item"><div class="title">${title}</div><div class="meta">${meta}</div><div>${body}</div></div>`; }
-function planItem(d) {
-  const list = (d.body || []).map(x => `<li>${x}</li>`).join('');
-  return `<div class="item"><div class="title">${d.day}: ${d.title}</div><ul>${list}</ul></div>`;
+function itemTemplate({ title, meta, body }) {
+  return `<div class="item"><div class="title">${title}</div><div class="meta">${meta}</div><div>${body}</div></div>`;
+}
+function planItem(d, di, checks, username) {
+  const bullets = d.body || [];
+  const list = bullets.map((text, bi) => {
+    const id = bulletId(d.day, d.title, bi);
+    const checked = !!checks[id];
+    return `
+      <li class="${checked ? 'done' : ''}">
+        <input type="checkbox" data-bid="${id}" ${checked ? 'checked' : ''} aria-label="Mark complete" />
+        <span>${text}</span>
+      </li>`;
+  }).join('');
+
+  return `
+    <div class="item" data-plan-index="${di}">
+      <div class="title">${d.day}: ${d.title}</div>
+      ${bullets.length ? `<ul>${list}</ul>` : `<div class="muted">No items</div>`}
+      ${bullets.length ? `<div class="progress"></div>` : ``}
+    </div>`;
 }
 
+/* =========================
+   Router
+   ========================= */
 window.addEventListener('DOMContentLoaded', () => {
   const page = document.body.getAttribute('data-page');
   if (page === 'login') onLoginPage();
